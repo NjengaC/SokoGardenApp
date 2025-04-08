@@ -29,16 +29,18 @@
         android:text="Sign In"
         android:backgroundTint="#40C4FF"
         android:id="@+id/signin"/>
-   <ProgressBar
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:id="@+id/progressbar"/>
+
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressbar"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/product_item"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/product_item"/>
 
-        />
 
 </LinearLayout>

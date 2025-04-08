@@ -1,6 +1,4 @@
-package com.peeter.sokogarden
-
-import PaymentActivity
+package com.modcom.yoghurts
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

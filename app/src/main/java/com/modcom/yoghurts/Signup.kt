@@ -1,3 +1,4 @@
+package com.modcom.yoghurts
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -6,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.loopj.android.http.RequestParams
-import com.modcom.yoghurts.R
 
 class Signup : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,13 +26,13 @@ class Signup : AppCompatActivity() {
         
         signup.setOnClickListener {
             val api = "https://modcom2.pythonanywhere.com/api/signup"
-            val params = RequestParams()
-            params.put("username", username.text.toString())
-            params.put("password", password.text.toString())
-            params.put("email", email.text.toString())
-            params.put("phone", phone.text.toString())
+            val data = RequestParams()
+            data.put("username", username.text.toString())
+            data.put("password", password.text.toString())
+            data.put("email", email.text.toString())
+            data.put("phone", phone.text.toString())
             val helper = ApiHelper(applicationContext)
-            helper.post(api, params)
+            helper.post(api, data)
         }
     }
 }

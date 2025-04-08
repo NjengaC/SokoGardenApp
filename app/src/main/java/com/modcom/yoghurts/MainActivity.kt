@@ -1,3 +1,4 @@
+package com.modcom.yoghurts
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -13,9 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.JsonHttpResponseHandler
+import com.modcom.yoghurts.ApiHelper
 import com.modcom.yoghurts.R
-import com.peeter.sokogarden.Signin
-import com.peeter.sokogarden.Signup
 import cz.msebera.android.httpclient.Header
 import org.json.JSONArray
 
@@ -45,8 +45,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, Signin::class.java)
             startActivity(intent)
         }
-
-
 
 
 

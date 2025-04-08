@@ -1,3 +1,4 @@
+package com.modcom.yoghurts
 import android.content.Context
 import android.content.Intent
 import android.view.View
@@ -8,8 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.JsonHttpResponseHandler
 import com.loopj.android.http.RequestParams
-import com.peeter.sokogarden.MainActivity
-import com.peeter.sokogarden.ProductAdapter
+
 import cz.msebera.android.httpclient.Header
 import cz.msebera.android.httpclient.entity.StringEntity
 import org.json.JSONArray
@@ -86,35 +86,6 @@ class ApiHelper(var context: Context) {
             }
         })
     }
-//   GET THE PRODUCTS
-//fun loadProducts(url: String, recyclerView: RecyclerView) {
-//    // Ensure a LayoutManager is set before you set the adapter
-//    val layoutManager = LinearLayoutManager(context)
-//    recyclerView.layoutManager = layoutManager
-//
-//    val client = AsyncHttpClient(true, 80, 443)
-//
-//    client.get(context, url, null, "application/json", object : JsonHttpResponseHandler() {
-//        override fun onSuccess(
-//            statusCode: Int,
-//            headers: Array<out Header>?,
-//            response: JSONArray
-//        ) {
-//            val productList = ProductAdapter.fromJsonArray(response)
-//            val adapter = ProductAdapter(productList)
-//            recyclerView.adapter = adapter
-//        }
-//
-//        override fun onFailure(
-//            statusCode: Int,
-//            headers: Array<out Header>?,
-//            responseString: String?,
-//            throwable: Throwable?
-//        ) {
-//            Toast.makeText(context, "Failed to load products", Toast.LENGTH_SHORT).show()
-//        }
-//    })
-//}
 
 fun loadProducts(url: String, recyclerView: RecyclerView, progressBar: ProgressBar? = null) {
     progressBar?.visibility = View.VISIBLE

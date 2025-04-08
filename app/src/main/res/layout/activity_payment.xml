@@ -1,25 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="30dp"
     tools:context=".PaymentActivity">
-
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
-
-<!--        <ImageView-->
-<!--            android:id="@+id/imgProduct"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="200dp"-->
-<!--            android:scaleType="centerCrop"-->
-<!--            android:layout_marginBottom="16dp" />-->
 
         <TextView
             android:id="@+id/txtProductName"
@@ -29,13 +17,6 @@
             android:layout_marginTop="20dp"
             android:textSize="20sp"
             android:textStyle="bold" />
-
-<!--        <TextView-->
-<!--            android:id="@+id/txtProductDesc"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Description"-->
-<!--            android:layout_marginTop="8dp" />-->
 
         <TextView
             android:id="@+id/txtProductCost"
@@ -61,8 +42,4 @@
             android:backgroundTint="#000000"
             android:id="@+id/pay"/>
 
-
     </LinearLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>

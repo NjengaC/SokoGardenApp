@@ -107,7 +107,7 @@ Run App.
 
 ### 🛠️ Step 2: Creating a Signin Activity
 In this Step, we create a Signin Functionality for our App. This will be used by users to Login to the application. Signin Activity connects to API Created in https://github.com/modcomlearning/BackendAPI   Step 5 <br>
-Right Click on App Main Package - <b>New - Activity - Select Empty Views Activity </b> template<br> Give this Activity the name "Signin" Click Finish.
+Right Click on App  - <b>New - Activity - Select Empty Views Activity </b> template<br> Give this Activity the name "Signin" Click Finish.
 <br>
 
 In the New Created Activity, Open res-layout-activity_signin.xml and create below layout
@@ -263,7 +263,7 @@ The Data is sent to out API.
 
 ### 🛠️ Step 3: Creating a Signup Activity
 In this step we create a Signup Activity, This Activity will have a registration form with for fields namely username, email, phone and password. This Activity connects to API Created in https://github.com/modcomlearning/BackendAPI Step 4 <br>
-Right Click on App Main Package - <b>New- Activity - Select Empty Views Activity </b> template<br> Give this Activity the name "Signup" Click Finish.
+Right Click on App  - <b>New- Activity - Select Empty Views Activity </b> template<br> Give this Activity the name "Signup" Click Finish.
 <br>
 
 In the New Created Activity, Open <b>res-layout-activity_signup.xml</b> and create below layout
@@ -663,6 +663,196 @@ The App loads products in a recycler view. The progressbar is used to show progr
 
 
 ### 🛠️ Step 5: Creating MakePayment Activity
+In this Step, We create a MakePayment Activity, This Functionality will be used to Make an MPESA STK Push when a user Clicks Purchase Now Button from any Product. Check Step 4 on how products are displayed.
+<br>
+
+Right Click on App  - <b>New- Activity - Select Empty Views Activity </b> template<br> Give this Activity the name "MakePayment" Click Finish. 
+
+A New MakePayment Activity is Created and a Corresponding activity_payment.xml is created as well, Open <b>res - layout - activity_payment.xml </b> and write below code.
+Below XML Layout Created a Phone input where user will enter the phone number used in payment. <br>
+
+activity_payment.xml
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".PaymentActivity">
+    
+        <TextView
+            android:id="@+id/txtProductName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Product Name"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtProductCost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ksh 0"
+            android:textSize="18sp"
+            android:textColor="#FF5722"
+            android:layout_marginTop="8dp" />
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter phone 254XXXXXXXX"
+            android:textSize="18sp"
+            android:textColorHint="#1E1C1B"
+            android:layout_marginTop="8dp" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="PAY NOW"
+            android:backgroundTint="#000000"
+            android:id="@+id/pay"/>
+    
+    </LinearLayout>
+
+```
+<br>
+<b>Above Code; M</b> <br>
+1. A LinearLayout -a ViewGroup Used to hold other Views vertically <br>
+2. TextView to Hold product_name<br>
+3. TextView to hold product_cost<br>
+4. EditText to Input user PhoneNumber <br>
+5. Clickable Button To Make Payment trigger.<br>
+
+NB: Confirm that above Views have uniqui IDs.
+<br>
+
+Next, Open Product Class and uncomment below Commented code.
+```kotlin
+                holder.btnPurchase.setOnClickListener {
+                    val context = holder.itemView.context
+                    val intent = android.content.Intent(context, PaymentActivity::class.java).apply {
+                        putExtra("product_id", product.product_id)
+                        putExtra("product_name", product.product_name)
+                        putExtra("product_description", product.product_description)
+                        putExtra("product_cost", product.product_cost)
+                        putExtra("product_photo", product.product_photo)
+                    }
+                    context.startActivity(intent)
+                }
+```
+
+<b>Above code; </b> <br>
+1. onClick on Purchase Button, Gets all Products Details.
+2. Creates an Intent/Link to PaymentActivity Class passing all Products Details.
+3. In Simple terms, above code Links/Intents to PaymentActivity carrying/pass Products Details namely product_name, product_cost etc.
+
+Below shows how the navigation looks like when Purchase Now Button is Clicked<br>
+<p float="left">
+  <img src="img_8.png" width="300"/>
+  <img src="img_9.png" width="300"/>
+</p><br>
+
+
+Next, We create Logic for MakePayment Activity.
+In kotlin + java, Open MakePayment and Update as shown below. 
+
+MakePayment Class 
+
+```kotlin
+package com.modcom.yoghurts
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.bumptech.glide.Glide
+import com.loopj.android.http.RequestParams
+import com.modcom.yoghurts.ApiHelper
+import com.modcom.yoghurts.R
+import org.json.JSONObject
+
+class PaymentActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_payment)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+        //Receive/Retrieve Extras Data the product_name and product_cost
+        //This data is passed via Intent
+        val name = intent.getStringExtra("product_name")
+        val cost = intent.getIntExtra("product_cost", 0)
+
+        //Find the Name and Cost TextViews
+        val txtName: TextView = findViewById(R.id.txtProductName)
+        val txtCost: TextView = findViewById(R.id.txtProductCost)
+
+        //Update TextViews with Values Passed Via Intent
+        txtName.text = name
+        txtCost.text = "Ksh $cost"
+
+        //Find Pay/Purchase Button
+        val btnPay: Button = findViewById(R.id.pay)
+        //Find Phone number Edit Text
+        val edtPhone: EditText = findViewById(R.id.phone)
+        //Set Click CListener
+        btnPay.setOnClickListener {
+            //Set Api Endpoint
+            val api = "https://modcom2.pythonanywhere.com/api/mpesa_payment"
+
+            //Get the types phone number
+            val phone = edtPhone.text.toString().trim()
+
+            //Create data using RequestParams, put phone and cost as keyvalue pairs
+            val data = RequestParams()
+            data.put("amount", cost)  //Passed via Intent
+            data.put("phone", phone)  // Entered by User in phone EditText
+
+            //Access API helper
+            val helper = ApiHelper(applicationContext)
+            //Post data  to api endpoint
+            helper.post(api, data)
+        }
+    }
+    }
+
+```
+
+<b>Run App </b> <br>
+Choose one Product, Click Purchase Now, It will navigate to MakePayment , showing the Product Name and Cost, Enter Phone Number (254XXXXXXX), Click Pay Now. Please Wait .... An MPESA Prompt is sent to the phone number for user to complete payment.<br>
+
+<p float="left">
+  <img src="img_8.png" width="300"/>
+  <img src="img_9.png" width="300"/>
+  <img src="image_23.png" width="300"/>
+</p>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

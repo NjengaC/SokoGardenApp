@@ -4,7 +4,7 @@ In this repository, we will create an Android application that interacts with an
 
 This app will serve as an e-commerce client that communicates with the backend to handle users, products and transactions.
 
-📱 App Features
+📱 <b>App Features </b>
 
 The Android app will include the following main pages:
 <br>
@@ -106,7 +106,7 @@ The ApiHelper class will be used in APIs Access.
 Run App.
 
 ### 🛠️ Step 2: Creating a Signin Activity
-In this Step, we create a Signin Functionality for our App. This will be used by users to Login to the application.
+In this Step, we create a Signin Functionality for our App. This will be used by users to Login to the application. Signin Activity connects to API Created in https://github.com/modcomlearning/BackendAPI   Step 5 <br>
 Right Click on App Main Package - <b>New - Activity - Select Empty Views Activity </b> template<br> Give this Activity the name "Signin" Click Finish.
 <br>
 
@@ -262,7 +262,7 @@ The Data is sent to out API.
 
 
 ### 🛠️ Step 3: Creating a Signup Activity
-In this step we create a Signup Activity, This Activity will have a registration form with for fields namely username, email, phone and password.
+In this step we create a Signup Activity, This Activity will have a registration form with for fields namely username, email, phone and password. This Activity connects to API Created in https://github.com/modcomlearning/BackendAPI Step 4 <br>
 Right Click on App Main Package - <b>New- Activity - Select Empty Views Activity </b> template<br> Give this Activity the name "Signup" Click Finish.
 <br>
 
@@ -338,12 +338,13 @@ In the New Created Activity, Open <b>res-layout-activity_signup.xml</b> and crea
 
 In above XML Layout we have 4 EditTexts, note that each EditText has a unique ID as well as the Signup Button.
 
-![img_1.png](img_1.png)
-
-Next, Create the Layout logic to capture user enetered data and send to our API.
+<img src="img_1.png" width="400"/>
+<br>
+Next, Create the Layout logic to capture user entered data and send to our API.
 Find Sign up API under https://github.com/modcomlearning/BackendAPI  Step 4
-
+<br>
 Go to kotlin + java, Open Signup.kt and update the Activity as shown in below Code.
+<br>
 
 ```kotlin
 
@@ -392,36 +393,36 @@ class Signup : AppCompatActivity() {
 }
 ```
 
-<b>Above Code;</b>
+<b>Above Code;</b> <br>
 1. Finds the 4 EditTexts and 1 Button
 
-      val username = findViewById<EditText>(R.id.username)
-      val password = findViewById<EditText>(R.id.password)
-      val email = findViewById<EditText>(R.id.email)
-      val phone = findViewById<EditText>(R.id.phone)
-      val signup = findViewById<Button>(R.id.signup)
+         val username = findViewById<EditText>(R.id.username)
+         val password = findViewById<EditText>(R.id.password)
+         val email = findViewById<EditText>(R.id.email)
+         val phone = findViewById<EditText>(R.id.phone)
+         val signup = findViewById<Button>(R.id.signup)
 
 2. Sets Listener to Button (Listens when Button is Clicked)
 
-      signup.setOnClickListener {
-        ...
+         signup.setOnClickListener {
+          ...
 3. Specifies the API Endpoint
 
-      val api = "https://modcom2.pythonanywhere.com/api/signup"
+         val api = "https://modcom2.pythonanywhere.com/api/signup"
 
 4. Gets all Texts/Values entered by user in EditTexts, Put the them in RequestParams
 
-      val data = RequestParams() 
-      data.put("username", username.text.toString())
-      data.put("password", password.text.toString())
-      data.put("email", email.text.toString())
-      data.put("phone", phone.text.toString())
+        val data = RequestParams() 
+        data.put("username", username.text.toString())
+        data.put("password", password.text.toString())
+        data.put("email", email.text.toString())
+        data.put("phone", phone.text.toString())
 
 5. Access the APiHelper and Sends the data.
 
-      val helper = ApiHelper(applicationContext)
-      //Post the data to our API
-      helper.post(api, data)
+        val helper = ApiHelper(applicationContext)
+        //Post the data to our API
+        helper.post(api, data)
 
 
 Finally, we need to Link the Signup Button in MainActivity to Link to Signup Activity, To do this Open MainActivity and add below code inside the onCreate function.
@@ -434,7 +435,7 @@ Finally, we need to Link the Signup Button in MainActivity to Link to Signup Act
   }
 ```
 
-Run App
+<b>Run App </b> <br>
 Click on Sign Up Button, It Opens a Sign up Form, Fill in Details and Submit
 The Data is sent to out API.
 
@@ -445,12 +446,13 @@ The Data is sent to out API.
 
 
 ### 🛠️ Step 4: Creating a Display Products Functionality.
-In this Step, we create the Get Products Functionality, Here, all the products will be retrieved and displayed in MainActivity, Just below the Signin and Signup Buttons, See below screenshot
+In this Step, we create the Get Products Functionality, Here, all the products will be retrieved and displayed in MainActivity, Just below the Signin and Signup Buttons, See below screenshot, The Display Products Functionality in our App connect to API Created in https://github.com/modcomlearning/BackendAPI Step 6 <br>
 <br>
 <p float="left">
   <img src="img_2.png" width="300"/>
   <img src="img_4.png" width="300"/>
 </p>
+<br>
 Products will be displayed in <b>MainActivity</b> <br>
 To Start with, Create an XML Layout of how one Product will be displayed. To Create a New XML File,  Right Click on res Folder - <b>New -  XML - Layout XML File </b> <br>
 
@@ -562,12 +564,13 @@ Then Go to activity_main.xml and add below 2 Views.
 ```
 
 In Above Code;
-1.  <ProgressBar> - Shows progress as we retrieve products.
+1.  <ProgressBar>  - Shows progress as we retrieve products.
 2.  <RecyclerView> - Creates a List of Products, Links to single_item XML layout using <b>tools:listitem.</b>
                    - single_item - Helps recycler view kow how to display products.
-
+<br>
 NB: Check progressbar and recyclerview have unique IDS.<br>
 <b>Your Complete activity_main.xml  </b> <br>
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -655,10 +658,11 @@ Abode Code;
 <b>Run App. </b> <br>
 The App loads products in a recycler view. The progressbar is used to show progress as products load<br>
 <br>
+
 <img src="img_4.png" width="400"/>
 
-     
 
+### 🛠️ Step 5: Creating MakePayment Activity
 
 
 

@@ -20,18 +20,22 @@ class Signin : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        //Find Views By ID
         val email = findViewById<EditText>(R.id.email)
         val password = findViewById<EditText>(R.id.password)
         val signin = findViewById<Button>(R.id.signin)
 
+        //Set Button Listener
         signin.setOnClickListener {
+            //Set API - Endpoint
             val api = "https://modcom2.pythonanywhere.com/api/signin"
-            val params = RequestParams()
-            params.put("email", email.text.toString().trim())
-            params.put("password", password.text.toString().trim())
-
+            //Add texts from EditTexts to RequestParams, email, password
+            val data = RequestParams()
+            data.put("email", email.text.toString().trim())
+            data.put("password", password.text.toString().trim())
+            //Access helper and Post
             val helper = ApiHelper(applicationContext)
-            helper.post2(api, params)
+            helper.post_login(api, data)
         }
     }
 }

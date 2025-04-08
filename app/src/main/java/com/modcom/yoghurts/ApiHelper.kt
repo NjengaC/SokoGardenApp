@@ -42,7 +42,7 @@ class ApiHelper(var context: Context) {
     }
 
     //Requires Access Token
-    fun post2(api: String, params: RequestParams) {
+    fun post_login(api: String, params: RequestParams) {
         Toast.makeText(context, "Please wait for response", Toast.LENGTH_LONG).show()
         val client = AsyncHttpClient(true, 80, 443)
 

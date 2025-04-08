@@ -105,16 +105,168 @@ The ApiHelper class will be used in APIs Access.
 
 Run App.
 
+### 🛠️ Step 2: Creating a Signin Activity
+In this Step, we create a Signin Functionality for our App. This will be used by users to Login to the application.
+Right Click on App Main Package - <b>New - Activity - Select Empty Views Activity </b> template<br> Give this Activity the name "Signin" Click Finish.
+<br>
+
+In the New Created Activity, Open res-layout-activity_signin.xml and create below layout
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".Signin">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="24dp" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email Address"
+            android:inputType="textEmailAddress"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="12dp"
+            android:layout_marginBottom="24dp" />
+
+        <Button
+            android:id="@+id/signin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SIGN IN"
+            android:backgroundTint="#000000"
+            android:textColor="#FFFFFF"
+            android:padding="12dp" />
+
+    </LinearLayout>
+
+```
+<b>In Above Layout; </b> <br>
+1. There are Two EditTexts withs ids @+id/email and @+id/password. <br>
+2. There is one button with id @+id/signin  <br>
+
+Next, Go to Kotlin + Java Folder, Open Signin Kotlin Class and update your code to look like below.
+
+```kotlin
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.loopj.android.http.RequestParams
+import com.modcom.yoghurts.ApiHelper
+import com.modcom.yoghurts.R
+
+class Signin : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_signin)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+        //Find Views By ID
+        val email = findViewById<EditText>(R.id.email)
+        val password = findViewById<EditText>(R.id.password)
+        val signin = findViewById<Button>(R.id.signin)
+
+        //Set Button Listener
+        signin.setOnClickListener {
+            //Set API - Endpoint
+            val api = "https://modcom2.pythonanywhere.com/api/signin"
+            //Add texts from EditTexts to RequestParams, email, password
+            val data = RequestParams()
+            data.put("email", email.text.toString().trim())
+            data.put("password", password.text.toString().trim())
+            //Access helper and Post
+            val helper = ApiHelper(applicationContext)
+            helper.post_login(api, data)
+        }
+    }
+}
+```
+<b>Above Code;</b>
+1. Finds the 2 EditTexts and 1 Button
+
+   val email = findViewById<EditText>(R.id.email)
+   val password = findViewById<EditText>(R.id.password)
+   val signin = findViewById<Button>(R.id.signin)
+
+2. Sets Listener to Button (Listens when Button is Clicked)
+
+   signin.setOnClickListener {
+   ...
+3. Specifies the API Endpoint
+
+   val api = "https://modcom2.pythonanywhere.com/api/signin"
+
+4. Gets all Texts/Values entered by user in EditTexts, Put the them in RequestParams
+
+   val data = RequestParams()
+   data.put("email", email.text.toString().trim()) 
+   data.put("password", password.text.toString().trim())
+
+5. Access the ApiHelper and Sends the data to API
+
+   val helper = ApiHelper(applicationContext)
+   //Post the data to our API
+   helper.post_login(api, data)
+
+<br>
+   
+Finally, we need to Link the Signin Button from MainActivity to Link/Intent to Signin Activity, To do this Open MainActivity and add below code inside onCreate Function.
+
+```kotlin
+  val signin = findViewById<Button>(R.id.signin)
+  signin.setOnClickListener {
+   val intent = Intent(applicationContext, Signin::class.java)
+   startActivity(intent)
+  }
+```
 
 
+Run App
+Click on Sign In Button, It Opens a Sign up Form, Fill in Details and Submit
+The Data is sent to out API.
+
+<p float="left">
+  <img src="img_2.png" width="300"/>
+  <img src="img_3.png" width="300"/>
+</p>
 
 
 ### 🛠️ Step 3: Creating a Signup Activity
-In this step we create a Signup Activity, This Acitivity will have a registration form with for fields namely username, email, phone and password.
+In this step we create a Signup Activity, This Activity will have a registration form with for fields namely username, email, phone and password.
 Right Click on App Main Package - <b>New- Activity - Select Empty Views Activity </b> template<br> Give this Activity the name "Signup" Click Finish.
 <br>
 
-In the New Created Activity, Open res-layout-activity_signup.xml and create below layout
+In the New Created Activity, Open <b>res-layout-activity_signup.xml</b> and create below layout
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -184,7 +336,7 @@ In the New Created Activity, Open res-layout-activity_signup.xml and create belo
 
 ```
 
-In above XML Layout we have 4 Edittexts, note that each EditText has a unique ID as well as the Signup Button.
+In above XML Layout we have 4 EditTexts, note that each EditText has a unique ID as well as the Signup Button.
 
 ![img_1.png](img_1.png)
 
@@ -194,7 +346,7 @@ Find Sign up API under https://github.com/modcomlearning/BackendAPI  Step 4
 Go to kotlin + java, Open Signup.kt and update the Activity as shown in below Code.
 
 ```kotlin
-package com.modcom.yoghurts
+
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -272,7 +424,7 @@ class Signup : AppCompatActivity() {
       helper.post(api, data)
 
 
-Finally, we need to Link the Signup Button in MainActivity to Link to Signup Activity, To do this Open MainActivity and add below code.
+Finally, we need to Link the Signup Button in MainActivity to Link to Signup Activity, To do this Open MainActivity and add below code inside the onCreate function.
 
 ```kotlin
   val signup = findViewById<Button>(R.id.signup)
@@ -281,18 +433,23 @@ Finally, we need to Link the Signup Button in MainActivity to Link to Signup Act
    startActivity(intent)
   }
 ```
+
 Run App
 Click on Sign Up Button, It Opens a Sign up Form, Fill in Details and Submit
 The Data is sent to out API.
 
 <p float="left">
-  <img src="img_2.png" width="200"/>
-  <img src="img_1.png" width="200"/>
+  <img src="img_2.png" width="300"/>
+  <img src="img_1.png" width="300"/>
 </p>
 
 
-
-
+### 🛠️ Step 4: Creating a Getproducts Activity - MainActivity.
+In this Step, we create the Get Products Functionality, Here, all the products will be retrieved and displayed in MainActivity, Just below the Signin and Signup Buttons.
+<br>
+<p float="left">
+  <img src="img_2.png" width="300"/>
+</p>
 
 
 

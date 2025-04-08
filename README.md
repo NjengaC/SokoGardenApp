@@ -9,13 +9,9 @@ This app will serve as an e-commerce client that communicates with the backend t
 The Android app will include the following main pages:
 <br>
 1. Main Page – Landing screen with general app info or product listing
-    <br>
 2. Signup Page – Allows new users to register
-<br>
 3. Signin Page – Allows existing users to log in
-<br>
 4. Buy Products Page – Displays available products and allows users to select
-<br>
 5. Make Payment Page – Final checkout and payment interface
 6. <br>
 

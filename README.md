@@ -105,7 +105,11 @@ The ApiHelper class will be used in APIs Access.
 
 Run App.
 
-### 🛠️ Step 2: Creating a Signup Activity
+
+
+
+
+### 🛠️ Step 3: Creating a Signup Activity
 In this step we create a Signup Activity, This Acitivity will have a registration form with for fields namely username, email, phone and password.
 Right Click on App Main Package - <b>New- Activity - Select Empty Views Activity </b> template<br> Give this Activity the name "Signup" Click Finish.
 <br>
@@ -239,33 +243,33 @@ class Signup : AppCompatActivity() {
 <b>Above Code;</b>
 1. Finds the 4 EditTexts and 1 Button
 
-   val username = findViewById<EditText>(R.id.username)
-   val password = findViewById<EditText>(R.id.password)
-   val email = findViewById<EditText>(R.id.email)
-   val phone = findViewById<EditText>(R.id.phone)
-   val signup = findViewById<Button>(R.id.signup)
+      val username = findViewById<EditText>(R.id.username)
+      val password = findViewById<EditText>(R.id.password)
+      val email = findViewById<EditText>(R.id.email)
+      val phone = findViewById<EditText>(R.id.phone)
+      val signup = findViewById<Button>(R.id.signup)
 
 2. Sets Listener to Button (Listens when Button is Clicked)
 
-   signup.setOnClickListener {
+      signup.setOnClickListener {
         ...
 3. Specifies the API Endpoint
 
-   val api = "https://modcom2.pythonanywhere.com/api/signup"
+      val api = "https://modcom2.pythonanywhere.com/api/signup"
 
 4. Gets all Texts/Values entered by user in EditTexts, Put the them in RequestParams
 
-   val data = RequestParams()
-   data.put("username", username.text.toString())
-   data.put("password", password.text.toString())
-   data.put("email", email.text.toString())
-   data.put("phone", phone.text.toString())
+      val data = RequestParams() 
+      data.put("username", username.text.toString())
+      data.put("password", password.text.toString())
+      data.put("email", email.text.toString())
+      data.put("phone", phone.text.toString())
 
 5. Access the APiHelper and Sends the data.
 
-   val helper = ApiHelper(applicationContext)
-   //Post the data to our API
-   helper.post(api, data)
+      val helper = ApiHelper(applicationContext)
+      //Post the data to our API
+      helper.post(api, data)
 
 
 Finally, we need to Link the Signup Button in MainActivity to Link to Signup Activity, To do this Open MainActivity and add below code.

@@ -7,9 +7,9 @@ This app will serve as an e-commerce client that communicates with the backend t
 📱 <b>App Features </b>
 
 The Android app will include the following main pages:
-
-1. Main Page – Landing screen with general app info or product listing
 <br>
+1. Main Page – Landing screen with general app info or product listing
+    <br>
 2. Signup Page – Allows new users to register
 <br>
 3. Signin Page – Allows existing users to log in

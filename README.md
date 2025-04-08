@@ -566,8 +566,8 @@ In Above Code;
 2.  <RecyclerView> - Creates a List of Products, Links to single_item XML layout using <b>tools:listitem.</b>
                    - single_item - Helps recycler view kow how to display products.
 
-
-Your Complete activity_main.xml 
+NB: Check progressbar and recyclerview have unique IDS.<br>
+<b>Your Complete activity_main.xml  </b> <br>
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -616,7 +616,7 @@ Your Complete activity_main.xml
 </LinearLayout>
 ```
 
-Next, Go to kotlin + java, Open MainActivity and write below Code.
+Next, Go to kotlin + java Folder, In your Main Package, Open MainActivity and write below Code.
 
 ```kotlin
         // Fetch recylerview and progressbar
@@ -630,15 +630,34 @@ Next, Go to kotlin + java, Open MainActivity and write below Code.
         val helper = ApiHelper(applicationContext)
 
         //  We have a function called loadProducts, its inside ApiHelper
-        //  Pass the 3 arguments which are url(api endpoit), recyclerview and progressbar
+        //  Pass the 3 arguments which are url(api endpoint), recyclerview and progressbar
         helper.loadProducts(url, recyclerView, progressBar )
 ```
 
+Abode Code;
+1.  Fetch/Find recylerview and progressbar from activity_main XML Layout
 
+          val progressBar = findViewById<ProgressBar>(R.id.progressbar)
+          val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+2. Define your api url
 
+          val url = "https://modcom2.pythonanywhere.com/api/get_product_details"
 
+3. Access APiHelper Class
 
+          val helper = ApiHelper(applicationContext)
 
+4. Access/Call loadProducts Function from ApiHelper, loadProducts Function take 3 arguments namely api url, recyclerview and progressbar
+
+          helper.loadProducts(url, recyclerView, progressBar )
+
+<br><br>
+<b>Run App. </b> <br>
+The App loads products in a recycler view. The progressbar is used to show progress as products load<br>
+<br>
+<img src="img_4.png" width="400"/>
+
+     
 
 
 

@@ -519,7 +519,7 @@ Name this XML <b>single_item</b> and Create below Layout.
 
 In Your Android Studio Layout View, It should look like this .
 
-<img src="img_5.png" width="700"/>
+<img src="img_5.png" width="1000"/>
 
 🤖 <b>What is a RecyclerView in Android? </b> <br>
 

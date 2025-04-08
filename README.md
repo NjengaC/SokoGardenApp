@@ -519,7 +519,7 @@ Name this XML <b>single_item</b> and Create below Layout.
 
 In Your Android Studio Layout View, It should look like this .
 
-![img_5.png](img_5.png)
+<img src="img_5.png" width="300"/>
 
 🤖 <b>What is a RecyclerView in Android? </b> <br>
 
@@ -529,10 +529,13 @@ In Your Android Studio Layout View, It should look like this .
 <br>
  3. Example use: showing a list of products, contacts, or messages in your app.
 <br>
-Example
+<i>Example of a Recycler View Showing Planets </i> <br>
 
-![img_6.png](img_6.png)
-
+<p float="left">
+  <img src="img_6.png" width="300"/>
+  <img src="img_7.png" width="300"/>
+</p>
+<br>
 🧩 <b>Why Do We Need an Adapter?</b> <br>
 
  1. The Adapter acts like a bridge between your data (like a list of products) and the RecyclerView UI.
@@ -541,6 +544,95 @@ Example
 
  3. Without the adapter, RecyclerView won’t know what to display or how to display it.
 
+Therefore, we need a RecyclerAdapter, Go to https://justpaste.it/h3e6v  and Copy the RecyclerAdapter Class, Paste it your App Main Package<br>
+
+Then Go to activity_main.xml and add below 2 Views.
+
+```xml
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressbar"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/single_item"/>
+```
+
+In Above Code;
+1.  <ProgressBar> - Shows progress as we retrieve products.
+2.  <RecyclerView> - Creates a List of Products, Links to single_item XML layout using <b>tools:listitem.</b>
+                   - single_item - Helps recycler view kow how to display products.
+
+
+Your Complete activity_main.xml 
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DailyYoghurts"
+        android:background="@drawable/shape"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:textAlignment="center"
+        android:layout_marginBottom="10dp"
+        android:textStyle="bold"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:backgroundTint="#448AFF"
+        android:id="@+id/signup"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign In"
+        android:backgroundTint="#40C4FF"
+        android:id="@+id/signin"/>
+
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressbar"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/single_item"/>
+   
+</LinearLayout>
+```
+
+Next, Go to kotlin + java, Open MainActivity and write below Code.
+
+```kotlin
+        // Fetch recylerview and progressbar
+        val progressBar = findViewById<ProgressBar>(R.id.progressbar)
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+
+        //  Define your url
+        val url = "https://modcom2.pythonanywhere.com/api/get_product_details"
+
+        //  Get the object of class APiHelper
+        val helper = ApiHelper(applicationContext)
+
+        //  We have a function called loadProducts, its inside ApiHelper
+        //  Pass the 3 arguments which are url(api endpoit), recyclerview and progressbar
+        helper.loadProducts(url, recyclerView, progressBar )
+```
 
 
 

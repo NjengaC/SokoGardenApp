@@ -14,7 +14,7 @@ The Android app will include the following main pages:
 4. Buy Products Page – Displays available products and allows users to select
 5. Make Payment Page – Final checkout and payment interface
 <br>
-
+Demo App.<br>
 ### 🛠️ Step 1: Create a New Android Project
 To get started:
 

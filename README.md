@@ -281,8 +281,8 @@ Run App
 Click on Sign Up Button, It Opens a Sign up Form, Fill in Details and Submit
 The Data is sent to out API.
 
-<img src = "img_2.png" width = "300"/>
-<img src = "img_1.png" width = "300"/>
+<img src = "img_2.png" width = "200"/>
+<img src = "img_1.png" width = "200"/>
 
 
 

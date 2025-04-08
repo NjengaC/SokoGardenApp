@@ -6,7 +6,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.modcom.yoghurts.R
 import org.json.JSONArray
 
 data class Product(
@@ -27,41 +26,44 @@ class ProductAdapter(private val productList: List<Product>) :
         val imgProduct: ImageView = itemView.findViewById(R.id.product_photo)
         val btnPurchase: TextView = itemView.findViewById(R.id.purchase)
     }
+    //Access the Layout - Single Item
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.product_item, parent, false)
+            .inflate(R.layout.single_item, parent, false)
         return ProductViewHolder(view)
     }
 
+    //Access Views in Single Item XML and Bind Data
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = productList[position]
         holder.txtName.text = product.product_name
         holder.txtDesc.text = product.product_description ?: "No description"
         holder.txtPrice.text = "Ksh ${product.product_cost}"
+        //Change/Replace modcom2 below to your Python Anywhere username
         val imageUrl = "https://modcom2.pythonanywhere.com/static/images/${product.product_photo}"
 
-
+        //Load image using Glide, Load Faster with Glide
         Glide.with(holder.itemView.context)
             .load(imageUrl )
             .placeholder(R.drawable.ic_launcher_background) // Make sure you have a placeholder image
             .into(holder.imgProduct)
 
-
-        holder.btnPurchase.setOnClickListener {
-            val context = holder.itemView.context
-            val intent = android.content.Intent(context, PaymentActivity::class.java).apply {
-                putExtra("product_id", product.product_id)
-                putExtra("product_name", product.product_name)
-                putExtra("product_description", product.product_description)
-                putExtra("product_cost", product.product_cost)
-                putExtra("product_photo", product.product_photo)
-            }
-            context.startActivity(intent)
-        }
+        //Handle Purchase Button Listener
+//        holder.btnPurchase.setOnClickListener {
+//            val context = holder.itemView.context
+//            val intent = android.content.Intent(context, PaymentActivity::class.java).apply {
+//                putExtra("product_id", product.product_id)
+//                putExtra("product_name", product.product_name)
+//                putExtra("product_description", product.product_description)
+//                putExtra("product_cost", product.product_cost)
+//                putExtra("product_photo", product.product_photo)
+//            }
+//            context.startActivity(intent)
+//        }
     }
 
     override fun getItemCount(): Int = productList.size
-
+   //Return all products Details as a LIST
     companion object {
         fun fromJsonArray(jsonArray: JSONArray): List<Product> {
             val list = mutableListOf<Product>()

@@ -16,12 +16,22 @@
         android:textStyle="bold"
         android:textColor="#000000" />
 
+    <!-- Product Photo -->
+    <ImageView
+        android:id="@+id/product_photo"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerInside"
+        android:src="@mipmap/ic_launcher" />
+
     <!-- Product Cost -->
     <TextView
         android:id="@+id/product_cost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="KES 100"
+        android:textStyle="bold"
         android:textSize="16sp"
         android:textColor="#FF5722"
         android:layout_marginTop="4dp" />
@@ -36,14 +46,7 @@
         android:textColor="#555555"
         android:layout_marginTop="4dp" />
 
-    <!-- Product Photo -->
-    <ImageView
-        android:id="@+id/product_photo"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/ic_launcher" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -81,7 +81,7 @@ Next, Go to <b>res - layout - activity_main.xml</b> , In this Layout Create a Ma
 Above LinearLayout holds a TextView and Two buttons namely Sign Up and Sign in.
 Output
 
-![img.png](img.png)
+<img src="img.png" width="300"/>
 
 <b>Add App Dependencies </b> <br>
 During the development of this app, we will need to add below dependencies to be used in api access and image loading
@@ -444,12 +444,108 @@ The Data is sent to out API.
 </p>
 
 
-### 🛠️ Step 4: Creating a Getproducts Activity - MainActivity.
-In this Step, we create the Get Products Functionality, Here, all the products will be retrieved and displayed in MainActivity, Just below the Signin and Signup Buttons.
+### 🛠️ Step 4: Creating a Display Products Functionality.
+In this Step, we create the Get Products Functionality, Here, all the products will be retrieved and displayed in MainActivity, Just below the Signin and Signup Buttons, See below screenshot
 <br>
 <p float="left">
   <img src="img_2.png" width="300"/>
+  <img src="img_4.png" width="300"/>
 </p>
+Products will be displayed in <b>MainActivity</b> <br>
+To Start with, Create an XML Layout of how one Product will be displayed. To Create a New XML File,  Right Click on res Folder - <b>New -  XML - Layout XML File </b> <br>
+
+Name this XML <b>single_item</b> and Create below Layout.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+   <!-- Product Name -->
+   <TextView
+           android:id="@+id/product_name"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Product Name"
+           android:textSize="18sp"
+           android:textStyle="bold"
+           android:textColor="#000000" />
+
+   <!-- Product Photo -->
+   <ImageView
+           android:id="@+id/product_photo"
+           android:layout_width="match_parent"
+           android:layout_height="150dp"
+           android:layout_marginTop="8dp"
+           android:scaleType="centerInside"
+           android:src="@mipmap/ic_launcher" />
+
+   <!-- Product Cost -->
+   <TextView
+           android:id="@+id/product_cost"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="KES 100"
+           android:textStyle="bold"
+           android:textSize="16sp"
+           android:textColor="#FF5722"
+           android:layout_marginTop="4dp" />
+
+   <!-- Product Description -->
+   <TextView
+           android:id="@+id/product_description"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="This is a great product with amazing features."
+           android:textSize="14sp"
+           android:textColor="#555555"
+           android:layout_marginTop="4dp" />
+
+
+   <Button
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="PURCHASE NOW"
+           android:layout_marginBottom="20dp"
+           android:layout_marginTop="10dp"
+           android:id="@+id/purchase"
+           android:backgroundTint="#000000"/>
+</LinearLayout>
+```
+
+In Your Android Studio Layout View, It should look like this .
+
+![img_5.png](img_5.png)
+
+🤖 <b>What is a RecyclerView in Android? </b> <br>
+
+ 1. RecyclerView is a special view used to display a list of items (like names, products, messages) in a scrollable way.
+ <br>
+ 2. It’s a better version of List — faster and more flexible.
+<br>
+ 3. Example use: showing a list of products, contacts, or messages in your app.
+<br>
+Example
+
+![img_6.png](img_6.png)
+
+🧩 <b>Why Do We Need an Adapter?</b> <br>
+
+ 1. The Adapter acts like a bridge between your data (like a list of products) and the RecyclerView UI.
+
+ 2. It takes each item in your list and tells RecyclerView how to show it on the screen.
+
+ 3. Without the adapter, RecyclerView won’t know what to display or how to display it.
+
+
+
+
+
+
 
 
 

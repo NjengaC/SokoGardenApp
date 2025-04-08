@@ -99,6 +99,19 @@ Click on Sync Project.
 Next Go to https://justpaste.it/iyuh1 , Copy the ApiHelper Class code ans Paste in Your Main App Package.
 The ApiHelper class will be used in APIs Access.
 
+Finally, Add Internet permissions in AndroidManifest File.<br>
+In your App, Go to manifests Folder, open AndroidManifest.xml, Before the application tag add below code.
+
+```xml
+    <uses-permission android:name="android.permission.INTERNET"/>
+```
+
+Complete Manifest File<br>
+
+![img_10.png](img_10.png)
+
+Internet Permissions allow the app to connect to the internet.<br>
+
 Run App.
 
 ### 🛠️ Step 2: Creating a Signin Activity

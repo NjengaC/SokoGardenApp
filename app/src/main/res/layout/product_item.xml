@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Product Name -->
+    <TextView
+        android:id="@+id/product_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Product Name"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#000000" />
+
+    <!-- Product Cost -->
+    <TextView
+        android:id="@+id/product_cost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="KES 100"
+        android:textSize="16sp"
+        android:textColor="#FF5722"
+        android:layout_marginTop="4dp" />
+
+    <!-- Product Description -->
+    <TextView
+        android:id="@+id/product_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This is a great product with amazing features."
+        android:textSize="14sp"
+        android:textColor="#555555"
+        android:layout_marginTop="4dp" />
+
+    <!-- Product Photo -->
+    <ImageView
+        android:id="@+id/product_photo"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PURCHASE NOW"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/purchase"
+        android:backgroundTint="#000000"/>
+</LinearLayout>

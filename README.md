@@ -223,29 +223,29 @@ class Signin : AppCompatActivity() {
 <b>Above Code;</b>
 1. Finds the 2 EditTexts and 1 Button
 
-   val email = findViewById<EditText>(R.id.email)
-   val password = findViewById<EditText>(R.id.password)
-   val signin = findViewById<Button>(R.id.signin)
+       val email = findViewById<EditText>(R.id.email)
+       val password = findViewById<EditText>(R.id.password)
+       val signin = findViewById<Button>(R.id.signin)
 
 2. Sets Listener to Button (Listens when Button is Clicked)
 
-   signin.setOnClickListener {
-   ...
+       signin.setOnClickListener {
+           ...
 3. Specifies the API Endpoint
 
-   val api = "https://modcom2.pythonanywhere.com/api/signin"
+       val api = "https://modcom2.pythonanywhere.com/api/signin"
 
 4. Gets all Texts/Values entered by user in EditTexts, Put the them in RequestParams
 
-   val data = RequestParams()
-   data.put("email", email.text.toString().trim()) 
-   data.put("password", password.text.toString().trim())
+       val data = RequestParams()
+       data.put("email", email.text.toString().trim()) 
+       data.put("password", password.text.toString().trim())
 
 5. Access the ApiHelper and Sends the data to API
 
-   val helper = ApiHelper(applicationContext)
-   //Post the data to our API
-   helper.post_login(api, data)
+       val helper = ApiHelper(applicationContext)
+       //Post the data to our API
+       helper.post_login(api, data)
 
 <br>
    

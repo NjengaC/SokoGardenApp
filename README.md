@@ -850,7 +850,10 @@ Choose one Product, Click Purchase Now, It will navigate to MakePayment , showin
 </p>
 <br>
 
-###  Step 6: About Activity  - TextToSpeach
+###  Step 6: About Activity  - TextToSpeech
+Check AI Notes.   [Introduction to AI.pdf](../../Desktop/Introduction%20to%20AI.pdf)
+<br>
+
 In this Step, we implement a Text-to-Speech (TTS) feature, which is a branch of Artificial Intelligence (AI).
 TTS technology enables the application to convert written text into audible speech. As part of AI, it simulates human-like speech and improves user interaction, especially for accessibility purposes. This is useful for users with visual impairments, reading challenges, or those who prefer audio content.
 <br>

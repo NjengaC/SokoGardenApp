@@ -949,7 +949,7 @@ Now we implement an about us Activity, Open About XML - activity_about.xml.
               android:textAlignment="center"
               android:textSize="30sp"/>
    
-      <EditText
+      <TextView
               android:id="@+id/textView"
               android:hint="Welcome to our eCommerce app, a simple and user-friendly platform designed to make online shopping easy and accessible for everyone. Users can quickly sign up to create an account, securely sign in, and browse a wide range of products with detailed descriptions and images. Our seamless checkout process allows customers to pay conveniently through M-Pesa"
               android:textSize="18sp"

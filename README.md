@@ -850,15 +850,16 @@ Choose one Product, Click Purchase Now, It will navigate to MakePayment , showin
 </p>
 <br>
 
-### 🛠️ Step 6: About Activity  - TextToSpeach
+###  Step 6: About Activity  - TextToSpeach
 In this Step, we implement a Text-to-Speech (TTS) feature, which is a branch of Artificial Intelligence (AI).
 TTS technology enables the application to convert written text into audible speech. As part of AI, it simulates human-like speech and improves user interaction, especially for accessibility purposes. This is useful for users with visual impairments, reading challenges, or those who prefer audio content.
 <br>
 In this step, we initialize the TTS engine, configure its settings (like language and pitch), and trigger speech output based on user interaction—bringing a smart, voice-enabled feature into the app.
 Create a New Activity named About. To do this right click on app - New - Activity - Empty Views Activity.
-
+<br>
 First Link/Intent to this Activity from Main Activity.
-In res-layout - activity_main.xml add an about button as shown below.
+<br>
+In <b>res-layout - activity_main.xml</b> add an about button as shown below.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -926,7 +927,7 @@ Then in Kotlin - MainActivity, add a Button Listener and intent to about as show
          startActivity(intent)
       }
 ```
-
+<br>
 Now we implement an about us Activity, Open About XML - activity_about.xml.
 ```xml
       <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -962,7 +963,7 @@ Now we implement an about us Activity, Open About XML - activity_about.xml.
               android:layout_marginTop="24dp"/>
    </LinearLayout>
 ```
-
+<br>
 Then, Go to Kotlin - About Activity and implement text to speech.
 
 ```kotlin
@@ -1059,10 +1060,12 @@ This stops and shuts down the TTS engine when the activity is closed, to free up
 
 <b>Run App </b> <br>
 Click on About Button, It Opens an About Activity - Click on Listen/Speak Button and the TextToSpeech Engine will read the Text for you!.
+<br>
 
-Output
-![img_11.png](img_11.png)
-
+<b>Output</b>
+<br>
+<img src="img_11.png" width="300"/>
+<br>
 ### Conclusion.
 In conclusion, this application is a functional and a powerful eCommerce app that includes essential features such as a main menu, user sign-up and sign-in, product display, and secure payments via M-Pesa. 
 <br>

@@ -31,6 +31,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+//        SIGN IN
+        val signin = findViewById<Button>(R.id.signin)
+        signin.setOnClickListener {
+            val intent = Intent(applicationContext, About::class.java)
+            startActivity(intent)
+        }
 
         //        fetch signup and signin button and intent them
         val about = findViewById<Button>(R.id.about)
@@ -39,10 +45,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-//        SIGN IN
-        val signin = findViewById<Button>(R.id.signin)
-        signin.setOnClickListener {
-            val intent = Intent(applicationContext, About::class.java)
+
+        //        fetch signup and signin button and intent them
+        val speechtotext = findViewById<Button>(R.id.speechtotext)
+        speechtotext.setOnClickListener {
+            val intent = Intent(applicationContext, SpeechToTextActivity::class.java)
             startActivity(intent)
         }
 

@@ -851,12 +851,11 @@ Choose one Product, Click Purchase Now, It will navigate to MakePayment , showin
 <br>
 
 ###  Step 6: About Activity  - TextToSpeech
-Check AI Notes.   [Introduction to AI.pdf](../../Desktop/Introduction%20to%20AI.pdf)
+Check AI Notes.   
 <br>
-
 In this Step, we implement a Text-to-Speech (TTS) feature, which is a branch of Artificial Intelligence (AI).
 TTS technology enables the application to convert written text into audible speech. As part of AI, it simulates human-like speech and improves user interaction, especially for accessibility purposes. This is useful for users with visual impairments, reading challenges, or those who prefer audio content.
-<br>
+<br><br>
 In this step, we initialize the TTS engine, configure its settings (like language and pitch), and trigger speech output based on user interaction—bringing a smart, voice-enabled feature into the app.
 Create a New Activity named About. To do this right click on app - New - Activity - Empty Views Activity.
 <br>

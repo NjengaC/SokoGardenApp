@@ -1080,7 +1080,7 @@ This project creates a great opportunity for students to explore Android develop
 ### Other useful Links
 https://github.com/modcomlearning/WellnessApp <br>
 https://github.com/modcomlearning/sokogarden   React - Frontend <br>
-https://github.com/modcomlearning/BackendAPI   Pythin - Backend API
+https://github.com/modcomlearning/BackendAPI   Python - Backend API
 
 
 

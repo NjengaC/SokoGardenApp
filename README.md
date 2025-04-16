@@ -850,6 +850,231 @@ Choose one Product, Click Purchase Now, It will navigate to MakePayment , showin
 </p>
 <br>
 
+### 🛠️ Step 6: About Activity  - TextToSpeach
+In this Step, we implement a Text-to-Speech (TTS) feature, which is a branch of Artificial Intelligence (AI).
+TTS technology enables the application to convert written text into audible speech. As part of AI, it simulates human-like speech and improves user interaction, especially for accessibility purposes. This is useful for users with visual impairments, reading challenges, or those who prefer audio content.
+<br>
+In this step, we initialize the TTS engine, configure its settings (like language and pitch), and trigger speech output based on user interaction—bringing a smart, voice-enabled feature into the app.
+Create a New Activity named About. To do this right click on app - New - Activity - Empty Views Activity.
+
+First Link/Intent to this Activity from Main Activity.
+In res-layout - activity_main.xml add an about button as shown below.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    tools:context=".MainActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DailyYoghurts"
+        android:background="@drawable/shape"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:textAlignment="center"
+        android:layout_marginBottom="10dp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:backgroundTint="#448AFF"
+        android:id="@+id/signup"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign In"
+        android:backgroundTint="#40C4FF"
+        android:id="@+id/signin"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="About info"
+        android:backgroundTint="#673AB7"
+        android:id="@+id/about"/>
+
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressbar"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/single_item"/>
+
+
+</LinearLayout>
+```
+Then in Kotlin - MainActivity, add a Button Listener and intent to about as shown below.
+
+```kotlin
+      val about = findViewById<Button>(R.id.about)
+      about.setOnClickListener {
+         val intent = Intent(applicationContext, About::class.java)
+         startActivity(intent)
+      }
+```
+
+Now we implement an about us Activity, Open About XML - activity_about.xml.
+```xml
+      <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+           android:orientation="vertical"
+           android:padding="16dp"
+           android:layout_width="match_parent"
+           android:layout_margin="20dp"
+           android:id="@+id/main"
+           android:layout_height="match_parent">
+   
+      <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="About Info"
+              android:textStyle="bold"
+              android:textAlignment="center"
+              android:textSize="30sp"/>
+   
+      <EditText
+              android:id="@+id/textView"
+              android:hint="Welcome to our eCommerce app, a simple and user-friendly platform designed to make online shopping easy and accessible for everyone. Users can quickly sign up to create an account, securely sign in, and browse a wide range of products with detailed descriptions and images. Our seamless checkout process allows customers to pay conveniently through M-Pesa"
+              android:textSize="18sp"
+              android:textColor="@color/black"
+              android:padding="10dp"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" />
+   
+      <Button
+              android:id="@+id/speakButton"
+              android:text="Listen"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="24dp"/>
+   </LinearLayout>
+```
+
+Then, Go to Kotlin - About Activity and implement text to speech.
+
+```kotlin
+package com.modcom.yoghurts
+import android.os.Bundle
+import android.speech.tts.TextToSpeech
+import android.widget.Button
+import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import java.util.Locale
+
+class About : AppCompatActivity() {
+    //Declare a tts variable.
+    lateinit var tts: TextToSpeech
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_about_faqs)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }//end
+        //find text view and button
+        val textView = findViewById<TextView>(R.id.textView)
+        val speakButton = findViewById<Button>(R.id.speakButton)
+       //Create a TTS object, check if tts is available and set Language
+        tts = TextToSpeech(this) {
+            if (it == TextToSpeech.SUCCESS) {
+                tts.language = Locale.US
+            }
+        }//end
+        //Set button listener
+        speakButton.setOnClickListener {
+            val text = textView.text.toString() //get text from text View
+            //ask tts to speak the text from textview above
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null) 
+        }//end
+    }//end
+    
+    //Stop the tts from speaking when app is closed/destroyed/killed
+    override fun onDestroy() {
+        tts.stop() //stops tts
+        tts.shutdown()
+        super.onDestroy()
+    }
+}
+```
+
+### Explanation of the Code (TTS Feature)
+
+    lateinit var tts: TextToSpeech
+
+This line declares a TTS variable that will be initialized later.
+
+It finds the EditText (where the user types the text) and the Button (which will trigger the speech).
+   
+     val textView = findViewById<TextView>(R.id.textView)
+     val speakButton = findViewById<Button>(R.id.speakButton)
+
+Initialize TTS
+This initializes the TTS engine.
+If initialization is successful, the language is set to US English.
+
+      tts = TextToSpeech(this) {
+         if (it == TextToSpeech.SUCCESS) {
+            tts.language = Locale.US
+         }
+      }
+
+
+Set Button Click Listener
+When the user clicks the button:
+It gets the text from the EditText.
+Then, the TTS engine reads the text out loud.
+
+      speakButton.setOnClickListener {
+         val text = textView.text.toString()
+         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
+      }
+
+Clean Up TTS in onDestroy()
+
+      override fun onDestroy() {
+         tts.stop()
+         tts.shutdown()
+         super.onDestroy()
+      }
+
+This stops and shuts down the TTS engine when the activity is closed, to free up system resources.
+
+<b>Run App </b> <br>
+Click on About Button, It Opens an About Activity - Click on Listen/Speak Button and the TextToSpeech Engine will read the Text for you!.
+
+Output
+![img_11.png](img_11.png)
+
+### Conclusion.
+In conclusion, this application is a functional and a powerful eCommerce app that includes essential features such as a main menu, user sign-up and sign-in, product display, and secure payments via M-Pesa. 
+<br>
+It also integrates a Text-to-Speech (TTS) feature powered by AI to enhance accessibility and user interaction. The app is built using Kotlin and XML, and it makes use of important components like API helpers and RecyclerView adapters for efficient data handling and user experience. 
+<br>
+This project creates a great opportunity for students to explore Android development, customize the UI, and build on the features to create even more advanced applications. Thank you!
+
+
+
+
+
+
 
 
 

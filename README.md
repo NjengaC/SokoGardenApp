@@ -13,6 +13,7 @@ The Android app will include the following main pages:
 3. Signin Page – Allows existing users to log in
 4. Buy Products Page – Displays available products and allows users to select
 5. Make Payment Page – Final checkout and payment interface
+6. TextToSpeech - Reads Text to Voice.
 <br>
 <b>App Demo.</b><br>
 

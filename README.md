@@ -1071,9 +1071,9 @@ Click on About Button, It Opens an About Activity - Click on Listen/Speak Button
 <br>
 ### Conclusion.
 In conclusion, this application is a functional and a powerful eCommerce app that includes essential features such as a main menu, user sign-up and sign-in, product display, and secure payments via M-Pesa. 
-<br>
+<br><br>
 It also integrates a Text-to-Speech (TTS) feature powered by AI to enhance accessibility and user interaction. The app is built using Kotlin and XML, and it makes use of important components like API helpers and RecyclerView adapters for efficient data handling and user experience. 
-<br>
+<br><br>
 This project creates a great opportunity for students to explore Android development, customize the UI, and build on the features to create even more advanced applications. Thank you!
 <br>
 

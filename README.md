@@ -1074,6 +1074,14 @@ In conclusion, this application is a functional and a powerful eCommerce app tha
 It also integrates a Text-to-Speech (TTS) feature powered by AI to enhance accessibility and user interaction. The app is built using Kotlin and XML, and it makes use of important components like API helpers and RecyclerView adapters for efficient data handling and user experience. 
 <br>
 This project creates a great opportunity for students to explore Android development, customize the UI, and build on the features to create even more advanced applications. Thank you!
+<br>
+
+### Other useful Links
+https://github.com/modcomlearning/WellnessApp <br>
+https://github.com/modcomlearning/sokogarden   React - Frontend <br>
+https://github.com/modcomlearning/BackendAPI   Pythin - Backend API
+
+
 
 
 
